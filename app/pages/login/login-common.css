@@ -1,0 +1,28 @@
+StackLayout {
+    padding-left: 40;
+    padding-right: 40;
+    background-color: #fafafa;
+}
+
+Image {
+    margin-top: 30;
+}
+
+TextField{
+    margin-top: 10;
+}
+
+Button {
+    background-color: #2D9CDB;
+    margin-bottom: 5;
+    color: #fafafa;
+}
+
+.text-login {
+    font-size: 30pt;
+    color: #2D9CDB;
+}
+
+.text-button{
+    font-size: 18pt;
+}
