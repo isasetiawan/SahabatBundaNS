@@ -1,0 +1,57 @@
+<Page>
+    <ActionBar [title]="'Pertumbuhan '+anak.nama"></ActionBar>
+
+    <TabView selectedColor="#FFF">
+
+        <StackLayout *tabItem="{title: 'Data BB TB'}">
+            <RadListView [items]="pertumbuhan" pullToRefresh="true" (pullToRefreshInitiated)="loadtumbuh($event)">
+
+                <ng-template tkListItemTemplate let-item="item">
+
+                    <GridLayout (tap)="showModal(item)" columns="*,auto,auto" class="wrapper">
+                        <StackLayout col="0">
+                            <Label class="title" class="title" [text]="item.detail_tumbuh"></Label>
+                            <Label class="desc" class="desc" [text]="item.hasil !== null ? 'Diperiksa pada '+ showDate(item.hasil.tanggal) : 'belum diperiksa' "></Label>
+                            <Label class="desc" class="desc" [text]="item.hasil !== null ? item.hasil.hasil : '' "></Label>
+                            <Label class="desc" class="desc" [text]="item.hasil !== null ? item.hasil.gizi : '' "></Label>
+                        </StackLayout>
+                        <Label class="wh-label" col="1" class="desc" class="desc" [text]="item.hasil !== null ? item.hasil.berat+' Kg | '+item.hasil.tinggi+' Cm' : '' "></Label>
+                    </GridLayout>
+
+                </ng-template>
+
+            </RadListView>
+        </StackLayout>
+
+        <StackLayout *tabItem="{title: 'Grafik BB/U' }">
+            <RadCartesianChart tkExampleTitle tkToggleNavButton>
+                <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
+                <!-- >> chart-line-axis -->
+                <LinearAxis tkCartesianVerticalAxis></LinearAxis>
+                <!-- << chart-line-axis -->
+                <LineSeries tkCartesianSeries [items]="bbus" categoryProperty="usia" valueProperty="berat"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="bbus" categoryProperty="usia" valueProperty="buruk"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="bbus" categoryProperty="usia" valueProperty="kurang"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="bbus" categoryProperty="usia" valueProperty="baik"></LineSeries>
+            </RadCartesianChart>
+        </StackLayout>
+
+        <StackLayout *tabItem="{title: 'Grafik TB/U' }">
+            <RadCartesianChart tkExampleTitle tkToggleNavButton>
+                <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
+                <!-- >> chart-line-axis -->
+                <LinearAxis tkCartesianVerticalAxis></LinearAxis>
+                <!-- << chart-line-axis -->
+                <LineSeries tkCartesianSeries [items]="tbus" categoryProperty="usia" valueProperty="tinggi"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="tbus" categoryProperty="usia" valueProperty="pendek"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="tbus" categoryProperty="usia" valueProperty="sangat_pendek"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="tbus" categoryProperty="usia" valueProperty="normal"></LineSeries>
+            </RadCartesianChart>
+        </StackLayout>
+
+        <StackLayout *tabItem="{title: 'Grafik TB/BB' }"></StackLayout>
+
+    </TabView>
+
+</Page>
+

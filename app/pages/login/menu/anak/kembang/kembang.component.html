@@ -1,0 +1,23 @@
+<Page>
+    <ActionBar [title]="'Perkembangan '+ anak.nama "></ActionBar>
+
+    <StackLayout>
+
+        <RadListView [items]="kembangs">
+
+            <ng-template tkListItemTemplate let-item="item">
+                <GridLayout columns = "*,auto" class="wrapper">
+                    <StackLayout col = "0" (tap)="onItemtap(item)">
+                        <Label class="title" [text]="item.umur+' bulan'"></Label>
+                        <Label class="desc" [text]="item.status"></Label>
+                    </StackLayout>
+                    <StackLayout col="1">
+                        <Button (tap)="onHasilTap(item)" [visibility]="item.status !== null ? 'visible' : 'collapse' " text="Hasil"></Button>
+                    </StackLayout>
+                </GridLayout>
+            </ng-template>
+
+        </RadListView>
+
+    </StackLayout>
+</Page>

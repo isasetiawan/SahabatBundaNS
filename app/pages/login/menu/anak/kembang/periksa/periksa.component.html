@@ -1,0 +1,24 @@
+<Page>
+    <ActionBar [title]="'Perkembangan ' + data.umur + ' Bulan' ">
+    </ActionBar>
+
+    <GridLayout row="auto,*" class="content">
+
+        <RadListView row="0" [items]="questions" selectionBehavior="Press" multipleSelection="true" (itemSelected)="onYes($event)" (itemDeselected)="onNo($event)">
+            <ng-template tkListItemTemplate let-item="item" let-i="i">
+                <CardView class="wrapper-card" margin="8" elevation="8" radius="8">
+                    <StackLayout class="wrapper-question">
+                        <Label textWrap="true" class="question" [text]="item.pertanyaan"></Label>
+                        <!--tkIfAndroid Notworking-->
+                        <FrescoDrawee actualImageScaleType="fitCenter" verticalAlignment="top" [height]="item.img === null ? 0 : 250" width="100%" [imageUri]="item.img !== null ? imgurl+'/'+item.img : ''" ></FrescoDrawee>
+                        <Label class="answer" textWrap="true" [text]="item.answer? 'JAWABAN: YA' : 'JAWABAN: TIDAK' "></Label>
+                    </StackLayout>
+                </CardView>
+            </ng-template>
+        </RadListView>
+
+        <FAB:fab (tap)="submitdata()" class="fab-button" row="1" rippleColor="#f1f1f1" />
+
+    </GridLayout>
+
+</Page>

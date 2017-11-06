@@ -1,0 +1,17 @@
+.wrapper-question{
+    margin: 16dp;
+    /*vertical-align: left;*/
+}
+.question{
+    margin-bottom: 8dp;
+    color: #333333;
+}
+
+.content{
+    margin-right: 4dp;
+    margin-left: 4dp;
+}
+
+.answer{
+    color: #f48fb1;
+}

@@ -1,0 +1,23 @@
+.content{
+    padding: 16dp;
+}
+
+.item-menu{
+    margin-left: 16dp;
+    margin-right: 16dp;
+    margin-top: 32dp;
+    margin-bottom: 32dp;
+}
+
+.sub-menu{
+}
+
+Image{
+    height:40%;
+    width: 40%;
+}
+
+Label{
+    text-align: center;
+    color: #333333;
+}

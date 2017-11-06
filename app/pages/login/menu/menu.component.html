@@ -1,0 +1,54 @@
+<Page>
+    <ActionBar title="Menu Utama">
+        <ActionItem android.position="popup" (tap)="logout()" text="Keluar"></ActionItem>
+        <ActionItem android.position="popup" (tap)="gotoProfile()" text="Profil"></ActionItem>
+
+    </ActionBar>
+
+    <TabView>
+
+        <GridLayout row="auto,*" *tabItem="{title: 'Daftar Anak'}">
+
+            <RadListView
+                    [items]="anak_anak"
+                    pullToRefresh="true"
+                    (pullToRefreshInitiated)="getAnaks($event)"
+                    selectedBehavior="Press"
+            >
+                <ng-template tkListItemTemplate let-item="item">
+                    <StackLayout (tap)='onitemtap(item)' class="wrapper" orientation="horizontal">
+                        <Image class="icon" [src]='item.gender=="L" ? "res://boy" : "res://girl"'></Image>
+                        <StackLayout orientaion="vertical" >
+                            <Label class="title" [text]="item.nama"></Label>
+                            <Label class="desc" [text]="showDate(item.birthdate)+' bulan'"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </ng-template>
+            </RadListView>
+
+            <FAB:fab (tap)="onAddAnakTap()" class="fab-button" row="1" rippleColor="#f1f1f1" />
+
+        </GridLayout>
+
+        <StackLayout *tabItem="{title: 'Kehamilan'}" >
+            <RadListView
+                    [items]="kehamilans"
+                    pullToRefresh="true"
+                    (pullToRefreshInitiated)="getKehamilans($event)"
+            >
+                <ng-template tkListItemTemplate let-item="item">
+                    <StackLayout class="wrapper" orientation="horizontal"  (tap)="onHamilTap(item)">
+                        <Image class="icon" src="res://kehamilan"></Image>
+                        <StackLayout orientation="vertical" >
+                            <Label class="title" [text]="'Kehamilan ke-'+item.hamil_ke"></Label>
+                            <Label  class="desc" [text]="'HPHT '+item.HPHT"></Label>
+                            <Label  class="desc" [visibility]="item.recent_pemeriksaan !== null ? 'visible':'collapse'" [text]="'Pemeriksaan Terakhir '+item.recent_pemeriksaan"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </ng-template>
+
+            </RadListView>
+        </StackLayout>
+
+    </TabView>
+</Page>

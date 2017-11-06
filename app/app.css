@@ -9,4 +9,37 @@ In many cases you may want to use the NativeScript core theme instead
 of writing your own CSS rules. For a full list of class names in the theme
 refer to http://docs.nativescript.org/ui/theme.
 */
-@import 'nativescript-theme-core/css/core.light.css';
+@import "~/nativescript-theme-core/css/sky.css";
+ActionBar{
+    color: white;
+}
+
+.btn-def {
+    background-color: #f48fb1;
+    /*margin-bottom: 5;*/
+    color: #fafafa;
+}
+
+.title{
+    font-size: 18pt;
+    color: #333333;
+}
+
+.desc{
+    font-size: 14pt;
+}
+
+.wrapper{
+    padding: 16;
+    border-bottom-width: 1;
+    border-bottom-color:#E0E0E0;
+}
+
+.fab-button {
+    height: 64;
+    width: 64;
+    margin: 15;
+    background-color: #f48fb1;
+    horizontal-align: right;
+    vertical-align: bottom;
+}

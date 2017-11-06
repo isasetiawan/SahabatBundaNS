@@ -12,6 +12,15 @@ import {Config} from "../config";
 export class UserService {
     constructor(private http:Http){}
 
+    getHeaders():Headers{
+        let saved_token = localStorage.getItem("token");
+        let headers = new Headers();
+        headers.append("Secret", Config.keyAPI);
+        headers.append("Authorization", "Bearer "+saved_token);
+        headers.append("Content-Type", "application/json");
+        return headers;
+    }
+
     login(user:User){
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
@@ -25,6 +34,35 @@ export class UserService {
             .do(data => {
                 console.log("balasan"+JSON.stringify(data))
             })
+            .catch(this.handleErrors)
+    }
+
+    logout(){
+        return this.http.post(
+            Config.urlAPI + "/logout",
+            JSON.stringify({}),
+            {headers:this.getHeaders()}
+        )
+            .map(response => response.json())
+            .catch(this.handleErrors)
+    }
+
+    profile(){
+        return this.http.get(
+            Config.urlAPI + "/profile",
+            {headers: this.getHeaders()}
+        )
+            .map(res=>res.json())
+            .catch(this.handleErrors)
+    }
+
+    edit_profile(profile:any){
+        return this.http.post(
+            Config.urlAPI + "/profile",
+            JSON.stringify(profile),
+            {headers: this.getHeaders()}
+        )
+            .map(res=>res.json())
             .catch(this.handleErrors)
     }
 

@@ -6,7 +6,7 @@
         <TextField hint="Nama Pengguna" autocapitalizationType="none" [(ngModel)]="user.username" ></TextField>
         <TextField hint="Kata Sandi" secure="true" [(ngModel)]="user.password" ></TextField>
 
-        <Button (tap)="login()" text="Masuk"></Button>
+        <Button class="btn-def" (tap)="login()" text="Masuk"></Button>
         <Label (tap)="register()" class="text-button" textAlignment="center" text="Buat Akun"></Label>
     </StackLayout>
 </Page>

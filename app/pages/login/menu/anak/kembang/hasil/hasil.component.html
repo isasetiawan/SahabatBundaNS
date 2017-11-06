@@ -1,0 +1,81 @@
+<Page>
+    <ActionBar title="Hasil"></ActionBar>
+    <TabView>
+
+        <StackLayout *tabItem="{title: 'Jawaban'}">
+
+            <RadListView [items]="questions" >
+                <ng-template tkListItemTemplate let-item="item">
+                    <CardView class="wrapper-card" margin="8" elevation="8" radius="8">
+                        <StackLayout class="wrapper-question">
+                            <Label textWrap="true" class="question" [text]="item.pertanyaan"></Label>
+                            <Label textWrap="true" class="answer" [text]="item.jawaban" horizontalAlignment="right"></Label>
+                        </StackLayout>
+                    </CardView>
+                </ng-template>
+            </RadListView>
+
+        </StackLayout>
+
+        <StackLayout *tabItem="{title: 'Stimulasi Kasar'}">
+
+            <RadListView [items]="stim_kasar" >
+                <ng-template tkListItemTemplate let-item="item">
+                    <CardView class="wrapper-card" margin="8" elevation="8" radius="8">
+                        <StackLayout class="wrapper-question">
+                            <Label textWrap="true" class="answer" [text]="item.judul" fontSize="18"></Label>
+                            <Label textWrap="true" class="question" [text]="item.stimulus"></Label>
+                        </StackLayout>
+                    </CardView>
+                </ng-template>
+            </RadListView>
+
+        </StackLayout>
+
+        <StackLayout *tabItem="{title: 'Stimulasi Halus'}">
+
+            <RadListView [items]="stim_halus" >
+                <ng-template tkListItemTemplate let-item="item">
+                    <CardView class="wrapper-card" margin="8" elevation="8" radius="8">
+                        <StackLayout class="wrapper-question">
+                            <Label textWrap="true" class="answer" [text]="item.judul" fontSize="18"></Label>
+                            <Label textWrap="true" class="question" [text]="item.stimulus"></Label>
+                        </StackLayout>
+                    </CardView>
+                </ng-template>
+            </RadListView>
+
+        </StackLayout>
+
+        <StackLayout *tabItem="{title: 'Stimulasi Sosial'}">
+
+            <RadListView [items]="stim_sosial" >
+                <ng-template tkListItemTemplate let-item="item">
+                    <CardView class="wrapper-card" margin="8" elevation="8" radius="8">
+                        <StackLayout class="wrapper-question">
+                            <Label textWrap="true" class="answer" [text]="item.judul" fontSize="18"></Label>
+                            <Label textWrap="true" class="question" [text]="item.stimulus"></Label>
+                        </StackLayout>
+                    </CardView>
+                </ng-template>
+            </RadListView>
+
+        </StackLayout>
+
+        <StackLayout *tabItem="{title: 'Stimulasi Bicara'}">
+
+            <RadListView [items]="stim_bicara" >
+                <ng-template tkListItemTemplate let-item="item">
+                    <CardView class="wrapper-card" margin="8" elevation="8" radius="8">
+                        <StackLayout class="wrapper-question">
+                            <Label textWrap="true" class="answer" [text]="item.judul" fontSize="18"></Label>
+                            <Label textWrap="true" class="question" [text]="item.stimulus"></Label>
+                        </StackLayout>
+                    </CardView>
+                </ng-template>
+            </RadListView>
+
+        </StackLayout>
+
+    </TabView>
+</Page>

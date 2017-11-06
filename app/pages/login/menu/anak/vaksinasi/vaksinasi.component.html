@@ -1,0 +1,15 @@
+<Page>
+    <ActionBar [title]="'Daftar Vaksin ' + anak.nama"></ActionBar>
+
+    <StackLayout>
+        <RadListView [items]="vakins" >
+            <ng-template let-item="item">
+                <StackLayout class="wrapper">
+                    <Label class="title" [text]="item.title"></Label>
+                    <Label class="desc" [text]=" 'Pada bulan ke ' + item.bulan"></Label>
+                </StackLayout>
+            </ng-template>
+        </RadListView>
+    </StackLayout>
+
+</Page>

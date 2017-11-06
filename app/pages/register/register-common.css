@@ -1,0 +1,12 @@
+StackLayout{
+    padding-top: 20;
+    padding-left: 20;
+    padding-right: 20;
+}
+
+Label{
+    margin-bottom: 10;
+    color: #2D9CDB;
+    font-size: 18pt;
+}
+

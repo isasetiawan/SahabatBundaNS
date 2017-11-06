@@ -12,11 +12,6 @@ TextField{
     margin-top: 10;
 }
 
-Button {
-    background-color: #2D9CDB;
-    margin-bottom: 5;
-    color: #fafafa;
-}
 
 .text-login {
     font-size: 30pt;

@@ -1,0 +1,8 @@
+.content{
+    padding: 16dp;
+}
+ActionBar {
+    border-width: 1;
+    border-color: transparent;
+    background-color: #30bcff;
+}
