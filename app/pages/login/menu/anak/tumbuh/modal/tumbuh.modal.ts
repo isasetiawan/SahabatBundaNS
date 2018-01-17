@@ -15,12 +15,9 @@ export class TumbuhModal {
 
     public constructor(private params:ModalDialogParams){
         console.log("TElo ",JSON.stringify(this.params.context));
-        this.tumbuh = new Tumbuh(this.params.context.hasil);
-        if (this.params.context.hasil !== null){
-            this.is_store = false;
-        } else {
-            this.tumbuh.tumbuh_id = this.params.context.id;
-            console.log(this.params.context.id)
+        this.tumbuh = new Tumbuh();
+        if (this.params.context.result !== null){
+            this.tumbuh = this.params.context.result as Tumbuh;
         }
     }
 
