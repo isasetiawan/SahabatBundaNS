@@ -49,23 +49,22 @@ export class HamilComponent implements OnInit{
 
     loadData(){
         this.service.r_kehamilan(this.kehamilan.id).subscribe(
-            res=> this.riwayat = res.content,
-            err=> Toast.makeText(err.json().message).show()
+            res=> {
+                this.riwayat = res.content;
+                this.service.r_kesehatan(this.kehamilan.id).subscribe(
+                    res=> {
+                        this.kesehatan = res.content;
+                        this.service.r_melahirkan(this.kehamilan.id).subscribe(
+                            res=> {
+                                this.melahirkan = res.content;
+                                this.service.r_keluhan(this.kehamilan.id).subscribe(
+                                    res=> this.keluhan = res.content,
+                                )
+                            }
+                        );
+                    }
+                );
+            }
         );
-
-        this.service.r_kesehatan(this.kehamilan.id).subscribe(
-            res=> this.kesehatan = res.content,
-            err=> Toast.makeText(err.json().message).show()
-        );
-
-        this.service.r_melahirkan(this.kehamilan.id).subscribe(
-            res=> this.melahirkan = res.content,
-            err=> Toast.makeText(err.json().message).show()
-        );
-
-        this.service.r_keluhan(this.kehamilan.id).subscribe(
-            res=> this.keluhan = res.content,
-            err=> Toast.makeText(err.json().message).show()
-        )
     }
 }

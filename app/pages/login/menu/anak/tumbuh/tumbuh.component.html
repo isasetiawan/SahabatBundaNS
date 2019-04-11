@@ -23,33 +23,77 @@
             </RadListView>
         </StackLayout>
 
-        <StackLayout *tabItem="{title: 'Grafik BB/U' }">
+        <StackLayout padding="16dp" *tabItem="{title: 'Grafik BB/U' }">
             <RadCartesianChart tkExampleTitle tkToggleNavButton>
                 <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
                 <!-- >> chart-line-axis -->
                 <LinearAxis tkCartesianVerticalAxis></LinearAxis>
                 <!-- << chart-line-axis -->
-                <LineSeries tkCartesianSeries [items]="bbus" categoryProperty="usia" valueProperty="berat"></LineSeries>
-                <LineSeries tkCartesianSeries [items]="bbus" categoryProperty="usia" valueProperty="buruk"></LineSeries>
-                <LineSeries tkCartesianSeries [items]="bbus" categoryProperty="usia" valueProperty="kurang"></LineSeries>
-                <LineSeries tkCartesianSeries [items]="bbus" categoryProperty="usia" valueProperty="baik"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="bbus" categoryProperty="usia" valueProperty="berat" [legendTitle]="'Berat '+anak.nama" showLabels="true"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="bbus" categoryProperty="usia" valueProperty="buruk" legendTitle="Buruk" ></LineSeries>
+                <LineSeries tkCartesianSeries [items]="bbus" categoryProperty="usia" valueProperty="kurang" legendTitle="Kurang" ></LineSeries>
+                <LineSeries tkCartesianSeries [items]="bbus" categoryProperty="usia" valueProperty="baik" legendTitle="Baik" ></LineSeries>
+                <!--Legend-->
+                <RadLegendView tkCartesianLegend position="Bottom" title="Keterangan" enableSelection="true" ></RadLegendView>
+
             </RadCartesianChart>
         </StackLayout>
 
-        <StackLayout *tabItem="{title: 'Grafik TB/U' }">
+        <StackLayout padding="16dp" *tabItem="{title: 'Grafik TB/U' }">
             <RadCartesianChart tkExampleTitle tkToggleNavButton>
                 <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
                 <!-- >> chart-line-axis -->
                 <LinearAxis tkCartesianVerticalAxis></LinearAxis>
                 <!-- << chart-line-axis -->
-                <LineSeries tkCartesianSeries [items]="tbus" categoryProperty="usia" valueProperty="tinggi"></LineSeries>
-                <LineSeries tkCartesianSeries [items]="tbus" categoryProperty="usia" valueProperty="pendek"></LineSeries>
-                <LineSeries tkCartesianSeries [items]="tbus" categoryProperty="usia" valueProperty="sangat_pendek"></LineSeries>
-                <LineSeries tkCartesianSeries [items]="tbus" categoryProperty="usia" valueProperty="normal"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="tbus" categoryProperty="usia" valueProperty="tinggi" [legendTitle]="'Tinggi '+anak.nama" showLabels="true"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="tbus" categoryProperty="usia" valueProperty="pendek" legendTitle="Pendek"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="tbus" categoryProperty="usia" valueProperty="sangat_pendek" legendTitle="Sangat Pendek"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="tbus" categoryProperty="usia" valueProperty="normal" legendTitle="Normal"></LineSeries>
+
+                <RadLegendView tkCartesianLegend position="Bottom" title="Keterangan" enableSelection="true" ></RadLegendView>
+
             </RadCartesianChart>
         </StackLayout>
 
-        <StackLayout *tabItem="{title: 'Grafik TB/BB' }"></StackLayout>
+        <StackLayout padding="16dp" *tabItem="{title: 'Grafik TB/BB' }">
+            <RadCartesianChart tkExampleTitle tkToggleNavButton seriesSelectionMode="Single">
+                <CategoricalAxis tkCartesianHorizontalAxis></CategoricalAxis>
+                <LinearAxis tkCartesianVerticalAxis></LinearAxis>
+
+                <LineSeries tkCartesianSeries [items]="tbbs" categoryProperty="tinggi" valueProperty="berat" [legendTitle]="'Berat '+anak.nama " showLabels="true" ></LineSeries>
+                <LineSeries tkCartesianSeries [items]="tbbs" categoryProperty="tinggi" valueProperty="sangat_kurus" legendTitle="Sangat Kurus"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="tbbs" categoryProperty="tinggi" valueProperty="kurus" legendTitle="Kurus"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="tbbs" categoryProperty="tinggi" valueProperty="normal" legendTitle="Normal"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="tbbs" categoryProperty="tinggi" valueProperty="gemuk" legendTitle="Gemuk"></LineSeries>
+                <LineSeries tkCartesianSeries [items]="tbbs" categoryProperty="tinggi" valueProperty="sangat_gemuk" legendTitle="Sangat Gemuk"></LineSeries>
+
+                <!--legend-->
+                <RadLegendView tkCartesianLegend position="Bottom" title="Keterangan" enableSelection="true" ></RadLegendView>
+            </RadCartesianChart>
+        </StackLayout>
+
+        <StackLayout margin="32dp" *tabItem="{title: 'Saran Gizi' }">
+            <RadListView [items]="tbbs" pullToRefresh="true" (pullToRefreshInitiated)="loadtumbuh($event)">
+
+                <ng-template let-i="index" tkListItemTemplate let-item="item">
+
+                    <CardView class="card-list" radius="8">
+                        <StackLayout padding="16dp">
+                            <Label class="title" class="title" [text]="item.detail_tumbuh"></Label>
+                            <Label class="desc" class="desc" [text]="item.hasil"></Label>
+                            <StackLayout *ngFor="let gi of item.gizi">
+                                <Label text=""></Label>
+                                <Label [text]="gi.saran" textWrap="true" ></Label>
+                                <Label [text]="gi.keterangan" textWrap="true" ></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </CardView>
+
+                </ng-template>
+
+
+            </RadListView>
+        </StackLayout>
 
     </TabView>
 

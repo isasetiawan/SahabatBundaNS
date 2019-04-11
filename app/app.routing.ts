@@ -14,8 +14,7 @@ import {VaksinasiComponent} from "./pages/login/menu/anak/vaksinasi/vaksinasi.co
 import {HamilComponent} from "./pages/login/menu/hamil/hamil.component";
 import {ProfileService} from "./pages/login/menu/profile/profile.service";
 import {ProfileComponent} from "./pages/login/menu/profile/profile.component";
-
-
+import {KesehatanComponent} from "./pages/login/menu/anak/kesehatan/kesehatan.component";
 
 const routes: Routes = [
     { path: "", redirectTo: "/login", pathMatch: "full" },
@@ -29,8 +28,8 @@ const routes: Routes = [
     { path: "hasil_kembang", component:HasilComponent},
     { path: "vaksin", component:VaksinasiComponent},
     { path: "hamil", component:HamilComponent},
-    { path: "profile", component:ProfileComponent}
-
+    { path: "profile", component:ProfileComponent},
+    { path: "kesehatan", component:KesehatanComponent}
 
 ];
 

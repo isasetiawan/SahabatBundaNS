@@ -44,11 +44,9 @@ export class KembangComponent implements OnInit{
             this.anak = p as Anak;
             this.service.index(this.anak).subscribe(
                 res=>{
-                    console.log(JSON.stringify(res));
-                    this.kembangs = new ObservableArray(res.content)
+                    this.kembangs = res.content;
                     this.kembangs.map(item=>item.status = this.stands[item.status])
-                },
-                err=>{Toast.makeText(err.json().message).show()}
+                }
             )
         })
     }

@@ -14,6 +14,16 @@ ActionBar{
     color: white;
 }
 
+TabView {
+    tab-text-color: #FFF;
+    selected-tab-text-color: #FFFFFF;
+    android-selected-tab-text-color: #FFFFFF;
+}
+
+Page{
+    background-color: #eeeeee;
+}
+
 .btn-def {
     background-color: #f48fb1;
     /*margin-bottom: 5;*/
@@ -42,4 +52,11 @@ ActionBar{
     background-color: #f48fb1;
     horizontal-align: right;
     vertical-align: bottom;
+}
+
+.card-list{
+    margin-top: 12dp;
+    margin-bottom: 4dp;
+    margin-left: 16dp;
+    margin-right: 16dp;
 }

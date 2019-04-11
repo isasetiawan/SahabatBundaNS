@@ -17,8 +17,7 @@ export class ProfileComponent {
 
     constructor(private service:ProfileService, private router:RouterExtensions){
         this.service.getProfile().subscribe(
-            res=> this.profile = <Profile> res.content,
-            err=> Toast.makeText(err.json().message).show()
+            res=> this.profile = <Profile> res.content
         );
     }
 
@@ -27,8 +26,7 @@ export class ProfileComponent {
             res => {
                 Toast.makeText("Berhasil").show();
                 this.router.backToPreviousPage();
-            },
-            err => Toast.makeText(err.json().message).show()
+            }
         );
     }
 

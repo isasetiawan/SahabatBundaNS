@@ -3,26 +3,37 @@ import {Config} from "../../../config";
 import {TokenUtils} from "../../../../utils/token.utils";
 import {Injectable} from "@angular/core";
 import {Profile} from "./profile";
+import {HttpClient} from "@angular/common/http";
+import {LoadingIndicator} from "nativescript-loading-indicator";
+import {Observable} from "rxjs/Observable";
 
 @Injectable()
 export class ProfileService {
-    constructor(private http:Http){}
+
+    private loadingindicator:LoadingIndicator;
+    constructor(private http:HttpClient){
+        this.loadingindicator = new LoadingIndicator();
+    }
 
     getProfile(){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.get(
             Config.urlAPI+"/profile",
-            {headers:TokenUtils.getHeaders()}
-        )   .map(res=>res.json())
-            .catch(TokenUtils.handleErrors)
+        )
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
+
     }
 
     updateProfile(profile:Profile){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.put(
             Config.urlAPI+"/profile",
-            JSON.stringify(profile),
-            {headers:TokenUtils.getHeaders()}
-        )   .map(res=>res.json())
-            .catch(TokenUtils.handleErrors)
+            profile,
+        )
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
+
     }
 
 }

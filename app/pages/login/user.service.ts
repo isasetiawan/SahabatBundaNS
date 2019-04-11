@@ -1,73 +1,60 @@
 import { Injectable } from "@angular/core";
-import { Http, Headers, Response } from "@angular/http";
-import { Observable } from "rxjs/Rx";
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/map";
 
 import {User} from "./user";
 import {Config} from "../config";
+import {HttpClient} from "@angular/common/http";
+import {LoadingIndicator} from "nativescript-loading-indicator";
+import {Observable} from "rxjs/Observable";
 
 
 @Injectable()
 export class UserService {
-    constructor(private http:Http){}
 
-    getHeaders():Headers{
-        let saved_token = localStorage.getItem("token");
-        let headers = new Headers();
-        headers.append("Secret", Config.keyAPI);
-        headers.append("Authorization", "Bearer "+saved_token);
-        headers.append("Content-Type", "application/json");
-        return headers;
+    private loadingindicator:LoadingIndicator;
+    constructor(private http:HttpClient){
+        this.loadingindicator = new LoadingIndicator();
     }
 
     login(user:User){
-        let headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        headers.append("Secret",Config.keyAPI)
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.post(
             Config.urlAPI + "/login",
-            JSON.stringify(user),
-            {headers:headers}
+            user,
         )
-            .map(response => response.json())
-            .do(data => {
-                console.log("balasan"+JSON.stringify(data))
-            })
-            .catch(this.handleErrors)
+            .finally(()=>this.loadingindicator.hide())
+            .catch(err=>Observable.throw(err))
     }
 
     logout(){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.post(
             Config.urlAPI + "/logout",
             JSON.stringify({}),
-            {headers:this.getHeaders()}
         )
-            .map(response => response.json())
-            .catch(this.handleErrors)
+            .finally(()=>this.loadingindicator.hide())
+            .catch(err=>Observable.throw(err))
+
     }
 
     profile(){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.get(
             Config.urlAPI + "/profile",
-            {headers: this.getHeaders()}
         )
-            .map(res=>res.json())
-            .catch(this.handleErrors)
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
     edit_profile(profile:any){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.post(
             Config.urlAPI + "/profile",
-            JSON.stringify(profile),
-            {headers: this.getHeaders()}
+            profile,
         )
-            .map(res=>res.json())
-            .catch(this.handleErrors)
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
-    handleErrors(error: Response) {
-        console.log(JSON.stringify(error.json()));
-        return Observable.throw(error);
-    }
 }

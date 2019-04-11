@@ -12,12 +12,7 @@
                 <TKEntityProperty tkDataFormProperty name="nama" displayName="Nama Anak">
                     <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
                     <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>
-                    <TKMinimumLengthValidator tkEntityPropertyValidators
-                                              errorMessage="harus lebih dari 4 karakter"
-                                              length="5"></TKMinimumLengthValidator>
-                    <TKMaximumLengthValidator tkEntityPropertyValidators
-                                              errorMessage="harus kurang dari 25 karakter "
-                                              length="25"></TKMaximumLengthValidator>
+
 
                 </TKEntityProperty>
 
@@ -31,36 +26,57 @@
 
             </RadDataForm>
 
-            <ScrollView class="sub-menu" [visibility]="is_store ? 'collapsed' : 'visible' " orientation="horizontal">
-                <StackLayout orientation="horizontal">
-
-                    <StackLayout (tap)="goToTumbuh()" class="item-menu"  horizontalAlignment="center" >
-                        <Image src="res://tumbuh"></Image>
-                        <Label text="Pertumbuhan"></Label>
-                    </StackLayout>
-
-                    <StackLayout (tap)="goToKembang()" class="item-menu" horizontalAlignment="center">
-                        <Image src="res://kembang"></Image>
-                        <Label text="Perkembangan"></Label>
-                    </StackLayout>
-
-                    <StackLayout (tap)="goToVaksin()" class="item-menu" horizontalAlignment="center">
-                        <Image src="res://vaccines"></Image>
-                        <Label text="Vaksinasi"></Label>
-                    </StackLayout>
-
-                    <StackLayout class="item-menu" horizontalAlignment="center">
-                        <Image src="res://kesehatan"></Image>
-                        <Label text="Kesehatan"></Label>
-                    </StackLayout>
-
-                </StackLayout>
-            </ScrollView>
-
             <GridLayout columns="*, *">
                 <Button col="1" [text]='is_store ? "Tambah" : "Ubah"' (tap)="submit()" class="btn-def"></Button>
                 <Button col="0" text="Hapus" [visibility]="is_store ? 'collapsed' : 'visible' " (tap)="delete()"></Button>
             </GridLayout>
+
+            <ScrollView class="sub-menu" [visibility]="is_store ? 'collapsed' : 'visible'">
+                <StackLayout>
+
+                    <CardView class="card-list" margin="8" radius="8">
+                        <StackLayout orientation="horizontal" padding="16dp" (tap)="goToTumbuh()" >
+                            <Image src="res://tumbuh"></Image>
+                            <StackLayout orientation="vertical">
+                                <Label text="Pertumbuhan" class="title" ></Label>
+                                <Label [text]="'Data tinggi dan berat badan '+anak.nama+' pada umur tertentu beserta analisanya'" textWrap="true" class="desc"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </CardView>
+
+                    <CardView class="card-list" margin="8" radius="8">
+                        <StackLayout orientation="horizontal" padding="16dp" (tap)="goToKembang()">
+                            <Image src="res://kembang"></Image>
+                            <StackLayout orientation="vertical">
+                                <Label text="Perkembangan" class="title" ></Label>
+                                <Label [text]="'Data mengenai perkembangan '+anak.nama+' pada umur tertentu, beserta analisanya'" textWrap="true" class="desc"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </CardView>
+
+                    <CardView class="card-list" margin="8" radius="8">
+                        <StackLayout orientation="horizontal" padding="16dp" (tap)="goToVaksin()">
+                            <Image src="res://vaccines"></Image>
+                            <StackLayout orientation="vertical">
+                                <Label text="Vaksinasi" class="title" ></Label>
+                                <Label [text]="'Data pemberian vaksin terhadap ' + anak.nama + ' beserta tanggalnya'" textWrap="true" class="desc"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </CardView>
+
+
+                    <CardView class="card-list" margin="8" radius="8">
+                        <StackLayout orientation="horizontal" padding="16dp" (tap)="goToHealthy()">
+                            <Image src="res://kesehatan"></Image>
+                            <StackLayout orientation="vertical">
+                                <Label text="Kesehatan" class="title" ></Label>
+                                <Label [text]="'Data kesehatan '+anak.nama+' pada umur tertentu'" textWrap="true" class="desc"></Label>
+                            </StackLayout>
+                        </StackLayout>
+                    </CardView>
+
+                </StackLayout>
+            </ScrollView>
 
         </StackLayout>
     </ScrollView>

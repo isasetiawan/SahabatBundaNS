@@ -37,6 +37,7 @@ export class TumbuhComponent implements OnInit{
     pertumbuhan:Array<any>;
     bbus:ObservableArray<any> = new ObservableArray([]);
     tbus:ObservableArray<any> = new ObservableArray([]);
+    tbbs:ObservableArray<any> = new ObservableArray([]);
 
     showDate = StaticFuncs.showDate;
 
@@ -53,26 +54,22 @@ export class TumbuhComponent implements OnInit{
             response=>{
                 this.pertumbuhan=response.content;
                 if (args !== null) args.object.notifyPullToRefreshFinished()
-            },
-            error=>alert(error.json().message)
+            }
         );
 
         //load graph tbu
         this.service.graphTBU(this.anak).subscribe(
-            res => this.tbus = new ObservableArray(res.content),
-            err => Toast.makeText(err.json().message).show()
+            res => this.tbus = new ObservableArray(res.content)
         );
 
         //load graph bbu
         this.service.graphBBU(this.anak).subscribe(
-            res => this.bbus = new ObservableArray(res.content),
-            err => Toast.makeText(err.json().message).show()
+            res => this.bbus = new ObservableArray(res.content)
         );
 
         //load graph tbbu
         this.service.graphTBBB(this.anak).subscribe(
-            res => console.log("tbbu oke ", JSON.stringify(res)),
-            err => Toast.makeText(err.json().message).show()
+            res => this.tbbs = new ObservableArray(res.content)
         );
 
     }
@@ -91,9 +88,6 @@ export class TumbuhComponent implements OnInit{
                         res => {
                             Toast.makeText(res.message).show();
                             this.loadtumbuh(null)
-                        },
-                        err => {
-                            Toast.makeText(err.json().message)
                         }
                     )
                 } else {
@@ -101,9 +95,6 @@ export class TumbuhComponent implements OnInit{
                         res => {
                             Toast.makeText(res.message).show();
                             this.loadtumbuh(null)
-                        },
-                        err => {
-                            Toast.makeText(err.json().message).show()
                         }
                     )
                 }

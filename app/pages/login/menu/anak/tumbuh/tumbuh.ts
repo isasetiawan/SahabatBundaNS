@@ -4,7 +4,7 @@ export class Tumbuh {
     id: string = "";
     tumbuh_id: string = "";
     bidan_id: string = "";
-    tanggal: string = moment().toString();
+    tanggal: string = new Date().toISOString().substring(0, 10);
     berat: string = "";
     tinggi: string = "";
     hasil: string = "";

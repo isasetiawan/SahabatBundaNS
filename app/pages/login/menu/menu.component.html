@@ -1,7 +1,7 @@
 <Page>
     <ActionBar title="Menu Utama">
-        <ActionItem android.position="popup" (tap)="logout()" text="Keluar"></ActionItem>
         <ActionItem android.position="popup" (tap)="gotoProfile()" text="Profil"></ActionItem>
+        <ActionItem android.position="popup" (tap)="logout()" text="Keluar"></ActionItem>
 
     </ActionBar>
 
@@ -20,13 +20,13 @@
                         <Image class="icon" [src]='item.gender=="L" ? "res://boy" : "res://girl"'></Image>
                         <StackLayout orientaion="vertical" >
                             <Label class="title" [text]="item.nama"></Label>
-                            <Label class="desc" [text]="showDate(item.birthdate)+' bulan'"></Label>
+                            <Label class="desc" [text]="showDate(item.birthdate)"></Label>
                         </StackLayout>
                     </StackLayout>
                 </ng-template>
             </RadListView>
 
-            <FAB:fab (tap)="onAddAnakTap()" class="fab-button" row="1" rippleColor="#f1f1f1" />
+            <FAB:fab (tap)="onAddAnakTap()" class="fab-button" row="1" rippleColor="#f1f1f1" icon="res://ic_add_white_24dp" />
 
         </GridLayout>
 
@@ -42,7 +42,7 @@
                         <StackLayout orientation="vertical" >
                             <Label class="title" [text]="'Kehamilan ke-'+item.hamil_ke"></Label>
                             <Label  class="desc" [text]="'HPHT '+item.HPHT"></Label>
-                            <Label  class="desc" [visibility]="item.recent_pemeriksaan !== null ? 'visible':'collapse'" [text]="'Pemeriksaan Terakhir '+item.recent_pemeriksaan"></Label>
+                            <Label  class="desc" [visibility]="item.recent_pemeriksaan !== undefined ? 'visible':'collapse'" [text]="'Pemeriksaan Terakhir '+item.recent_pemeriksaan"></Label>
                         </StackLayout>
                     </StackLayout>
                 </ng-template>

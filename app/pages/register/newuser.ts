@@ -1,6 +1,5 @@
 export class Newuser {
     username:string;
-    email:string;
     password:string;
     password_confirmation:string;
     ibu_nama:string;
@@ -12,11 +11,14 @@ export class Newuser {
     ayah_agama:string;
     ayah_birthdate:string;
     i_agree:boolean;
+    provinsi_id: number;
+    kabupaten_id: number;
+    kecamatan_id: number;
+    kelurahan_id: number;
 
 
     constructor(username: string, email: string, password: string, password_confirmation: string, ibu_nama: string, ibu_birthdate: string, ibu_alamat: string, ibu_agama: string, ayah_nama: string, ayah_alamat: string, ayah_agama: string, ayah_birthdate: string) {
         this.username = username;
-        this.email = email;
         this.password = password;
         this.password_confirmation = password_confirmation;
         this.ibu_nama = ibu_nama;

@@ -50,8 +50,7 @@ export class HasilComponent implements OnInit{
                 this.stim_sosial = result.stimulasi.sosial;
 
                 console.log(JSON.stringify(result));
-            },
-            err=>Toast.makeText(JSON.stringify(err.json().message)).show()
+            }
         );
     }
 }

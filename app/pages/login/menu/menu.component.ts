@@ -45,15 +45,8 @@ export class MenuComponent implements OnInit {
         this.anakService.index()
         .subscribe(
             (response) => {
-                this.anak_anak = new ObservableArray(response);
+                this.anak_anak = new ObservableArray(response.content);
                 if (args !== null) args.object.notifyPullToRefreshFinished();
-            },
-            (error) => {
-                if (error.status === 401){
-                    Toast.makeText("Silahkan login dahulu").show();
-                    this.router.navigate([''])
-                }                
-                if (args !== null) args.object.notifyPullToRefreshFinished();                
             }
         )
     }
@@ -63,8 +56,7 @@ export class MenuComponent implements OnInit {
             res=>{
                 this.kehamilans = new ObservableArray(res.content);
                 if (args !== null) args.object.notifyPullToRefreshFinished();
-            },
-            err => Toast.makeText(err.json().message).show()
+            }
         )
     }
 

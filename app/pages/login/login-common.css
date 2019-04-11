@@ -14,10 +14,18 @@ TextField{
 
 
 .text-login {
-    font-size: 30pt;
+    padding-top: 32dp;
+    font-size: 28pt;
     color: #2D9CDB;
 }
 
 .text-button{
     font-size: 18pt;
+}
+
+.login_page{
+    padding-left: 48dp;
+    padding-right: 48dp;
+    padding-bottom: 69dp;
+
 }

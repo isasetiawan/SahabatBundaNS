@@ -6,79 +6,75 @@ import {Observable} from "rxjs/Rx";
 import "rxjs/add/operator/map"
 import {Tumbuh} from "./tumbuh";
 import {Anak} from "../../anak";
+import {HttpClient} from "@angular/common/http";
+import {LoadingIndicator} from "nativescript-loading-indicator";
 
 @Injectable()
 export class TumbuhService {
-    constructor(private http:Http){}
 
-    getHeaders():Headers{
-        let saved_token = localStorage.getItem("token");
-        let headers = new Headers();
-        headers.append("Secret", Config.keyAPI);
-        headers.append("Authorization", "Bearer "+saved_token);
-        headers.append("Content-Type", "application/json");
-        return headers;
+    private loadingindicator:LoadingIndicator;
+    constructor(private http:HttpClient){
+        this.loadingindicator = new LoadingIndicator();
     }
 
     show(id:number){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.get(
             Config.urlAPI+"/anak/"+id+"/tumbuh",
-            {headers:this.getHeaders()}
         )
-            .map(response=>response.json())
-            .catch(TumbuhService.handleErrors)
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
+
     store(anak:Anak, tumbuh:Tumbuh){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.post(
             Config.urlAPI+"/anak/"+anak.id+"/tumbuh/"+tumbuh.tumbuh_id,
-            JSON.stringify(tumbuh),
-            {headers:this.getHeaders()}
+            tumbuh,
         )
-            .map(res=>res.json())
-            .catch(TumbuhService.handleErrors)
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
     update(anak:Anak, tumbuh:Tumbuh){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.put(
             Config.urlAPI+"/anak/"+anak.id+"/tumbuh/"+tumbuh.tumbuh_id,
-            JSON.stringify(tumbuh),
-            {headers:this.getHeaders()}
+            tumbuh,
         )
-            .map(res=>res.json())
-            .catch(TumbuhService.handleErrors)
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
     graphBBU(anak:Anak){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.get(
             Config.urlAPI+"/anak/"+anak.id+"/tumbuh/bbu",
-            {headers:this.getHeaders()}
         )
-            .map(res=>res.json())
-            .catch(TumbuhService.handleErrors)
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
+
 
     graphTBU(anak:Anak){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.get(
             Config.urlAPI+"/anak/"+anak.id+"/tumbuh/tbu",
-            {headers:this.getHeaders()}
         )
-            .map(res=>res.json())
-            .catch(TumbuhService.handleErrors)
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
+
 
     graphTBBB(anak:Anak){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.get(
             Config.urlAPI+"/anak/"+anak.id+"/tumbuh/tbbb",
-            {headers:this.getHeaders()}
         )
-            .map(res=>res.json())
-            .catch(TumbuhService.handleErrors)
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
-    static handleErrors(error:Response){
-        console.log("Anak Service ",JSON.stringify(error.json()));
-        return Observable.throw(error)
-    }
 
 }

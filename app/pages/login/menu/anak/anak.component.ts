@@ -54,16 +54,14 @@ export class AnakComponent implements OnInit{
                 res=>{
                     Toast.makeText(res.message).show();
                     this.navigate.backToPreviousPage()
-                },
-                err=>alert("Terjadil kesalahan "+err.json().message)
+                }
             )
         } else {
             this.service.store(this._anak).subscribe(
                 res=>{
                     Toast.makeText(res.message).show();
                     this.navigate.backToPreviousPage()
-                },
-                err=>alert("Terjadil kesalahan "+err.json().message)
+                }
             )
         }
     }
@@ -84,9 +82,6 @@ export class AnakComponent implements OnInit{
                     res=>{
                         Toast.makeText(res.message).show();
                         this.navigate.backToPreviousPage()
-                    },
-                    err=>{
-                        Toast.makeText(err.json().message).show()
                     }
                 )
             }
@@ -112,5 +107,12 @@ export class AnakComponent implements OnInit{
             queryParams:this._anak
         };
         this.navigate.navigate(['/vaksin'],navexrta)
+    }
+
+    goToHealthy(){
+        let navexrta:NavigationExtras = {
+            queryParams:this._anak
+        };
+        this.navigate.navigate(['/kesehatan'],navexrta)
     }
 }

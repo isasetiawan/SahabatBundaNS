@@ -7,86 +7,58 @@ import "rxjs/add/operator/do"
 import "rxjs/add/operator/map"
 
 import {Config} from "../../config"
+import {HttpClient} from "@angular/common/http";
+import {LoadingIndicator} from "nativescript-loading-indicator";
 
 @Injectable()
 export class AnakService {
 
-    constructor(private http:Http){}
+    private loadingindicator:LoadingIndicator;
+    constructor(private http:HttpClient){
+        this.loadingindicator = new LoadingIndicator();
+    }
 
     index(){
-        let saved_token = localStorage.getItem("token");
-        let headers = new Headers();
-        headers.append("Secret", Config.keyAPI);
-        headers.append("Authorization", "Bearer "+saved_token);
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.get(
             Config.urlAPI + "/anak",
-            { headers:headers }
         )
-        .map(response=>{
-            const data = response.json().content;
-            return data.map(anak => anak as Anak)
-        })
-        .catch(AnakService.handleErrors)
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
     update(anak){
-        console.log(JSON.stringify(anak));
-        let saved_token = localStorage.getItem("token");
-        let headers = new Headers();
-        headers.append("Secret", Config.keyAPI);
-        headers.append("Authorization", "Bearer "+saved_token);
-        headers.append("Content-Type", "application/json");
-
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.put(
             Config.urlAPI + "/anak/"+anak.id,
-            JSON.stringify(anak),
-            { headers:headers }
+            anak,
         )
-            .map(response=>response.json())
-            .do(data=>console.log(data))
-            .catch(AnakService.handleErrors)
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
     store(anak){
-        let saved_token = localStorage.getItem("token");
-        let headers = new Headers();
-        headers.append("Secret", Config.keyAPI);
-        headers.append("Authorization", "Bearer "+saved_token);
-        headers.append("Content-Type", "application/json");
-
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.post(
             Config.urlAPI + "/anak",
-            JSON.stringify(anak),
-            { headers:headers }
+            anak,
         )
-            .map(response=>response.json())
-            .do(data=>console.log(data))
-            .catch(AnakService.handleErrors)
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
     delete(password:string, idanak:number){
-        let saved_token = localStorage.getItem("token");
-        let headers = new Headers();
-        headers.append("Secret", Config.keyAPI);
-        headers.append("Authorization", "Bearer "+saved_token);
-        headers.append("Content-Type", "application/json");
-
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.post(
             Config.urlAPI + "/anak/"+idanak,
-            JSON.stringify({
+            {
                 _method:"delete",
                 password:password
-            }),
-            { headers: headers }
+            },
         )
-            .map(response=>response.json())
-            .do(data=>console.log(data))
-            .catch(AnakService.handleErrors)
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
-    static handleErrors(error:Response){
-        console.log("Anak Service ",JSON.stringify(error.json()));
-        return Observable.throw(error)
-    }
 
 }

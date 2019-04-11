@@ -9,13 +9,10 @@ import {NativeScriptHttpModule} from "nativescript-angular/http";
 import {LoginComponent} from "./pages/login/login.component";
 import {RegisterComponent} from "./pages/register/register.component";
 import {MenuComponent} from "./pages/login/menu/menu.component";
-import {NativeScriptUIDataFormModule} from "nativescript-telerik-ui-pro/dataform/angular";
-import { NativeScriptUIListViewModule } from "nativescript-telerik-ui-pro/listview/angular";
 import { TokenUtils } from "./utils/token.utils"
 import { AnakComponent } from "./pages/login/menu/anak/anak.component"
 import {TumbuhComponent} from "./pages/login/menu/anak/tumbuh/tumbuh.component";
 import {TumbuhModal} from "./pages/login/menu/anak/tumbuh/modal/tumbuh.modal";
-import {NativeScriptUIChartModule} from "nativescript-telerik-ui-pro/chart/angular";
 import {KembangComponent} from "./pages/login/menu/anak/kembang/kembang.component";
 import {PeriksaComponent} from "./pages/login/menu/anak/kembang/periksa/periksa.component";
 import {TNSFrescoModule} from "nativescript-fresco/angular";
@@ -27,6 +24,14 @@ import {VaksinService} from "./pages/login/menu/anak/vaksinasi/vaksin.service";
 import {VaksinasiComponent} from "./pages/login/menu/anak/vaksinasi/vaksinasi.component";
 import {HamilComponent} from "./pages/login/menu/hamil/hamil.component";
 import {ProfileComponent} from "./pages/login/menu/profile/profile.component";
+import {NativeScriptUIDataFormModule} from "nativescript-pro-ui/dataform/angular";
+import {NativeScriptUIListViewModule} from "nativescript-pro-ui/listview/angular";
+import {NativeScriptUIChartModule} from "nativescript-pro-ui/chart/angular";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {AuthInterceptorService} from "./auth-interceptor.service";
+import {NativeScriptHttpClientModule} from "nativescript-angular/http-client";
+import {KesehatanComponent} from "./pages/login/menu/anak/kesehatan/kesehatan.component";
+import {DetilKesehatanComponent} from "./pages/login/menu/anak/kesehatan/detil-kesehatan/detil-kesehatan.component";
 
 if (applicationModule.android) {
     applicationModule.on("launch", () => {
@@ -43,7 +48,7 @@ if (applicationModule.android) {
         AppRoutingModule,
         NativeScriptFormsModule,
         NativeScriptHttpModule,
-        // RadDataFormComponent,
+        NativeScriptHttpClientModule,
         NativeScriptUIDataFormModule,
         NativeScriptUIListViewModule,
         NativeScriptUIChartModule,
@@ -62,14 +67,21 @@ if (applicationModule.android) {
         HasilComponent,
         VaksinasiComponent,
         HamilComponent,
-        ProfileComponent
+        ProfileComponent,
+        KesehatanComponent,
+        DetilKesehatanComponent
     ],
     providers: [
         ItemService,
         TokenUtils,
-        ModalDialogService
+        ModalDialogService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: AuthInterceptorService,
+            multi: true
+        }
     ],
-    entryComponents:[TumbuhModal],
+    entryComponents:[TumbuhModal,DetilKesehatanComponent],
     schemas: [
         NO_ERRORS_SCHEMA
     ]

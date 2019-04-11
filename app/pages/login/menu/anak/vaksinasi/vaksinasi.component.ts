@@ -32,8 +32,7 @@ export class VaksinasiComponent implements OnInit {
             this.service.show(this.anak.id).subscribe(
                 res=>{
                     this.vakins = new ObservableArray(res.content)
-                },
-                err => {Toast.makeText(err.json().message).show()}
+                }
             )
         })
     }

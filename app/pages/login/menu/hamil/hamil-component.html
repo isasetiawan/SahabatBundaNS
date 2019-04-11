@@ -61,14 +61,24 @@
             </RadDataForm>
         </StackLayout>
 
-        <StackLayout isReadOnly="true" class="content" *tabItem="{title: 'R. Melahirkan'}">
+        <StackLayout class="content" *tabItem="{title: 'Melahirkan'}">
             <RadDataForm [source]="melahirkan" isReadOnly="true">
+
                 <TKEntityProperty tkDataFormProperty name="id" hidden="true"></TKEntityProperty>
                 <TKEntityProperty tkDataFormProperty name="kehamilan_id" hidden="true"></TKEntityProperty>
+
+                <TKEntityProperty name="with_husband" displayName="Didampingi suami" [valuesProvider]="dropoutChoice">
+                    <TKPropertyEditor tkEntityPropertyEditor type="SegmentedEditor"></TKPropertyEditor>
+                </TKEntityProperty>
+
+                <TKEntityProperty name="selesai" displayName="Selesai ?" [valuesProvider]="dropoutChoice">
+                    <TKPropertyEditor tkEntityPropertyEditor type="SegmentedEditor"></TKPropertyEditor>
+                </TKEntityProperty>
+
             </RadDataForm>
         </StackLayout>
 
-        <StackLayout isReadOnly="true" class="content" *tabItem="{title: 'R. Keluhan'}">
+        <StackLayout isReadOnly="true" class="content" *tabItem="{title: 'Keluhan'}">
             <RadDataForm [source]="keluhan" isReadOnly="true">
                 <TKEntityProperty tkDataFormProperty name="id" hidden="true"></TKEntityProperty>
                 <TKEntityProperty tkDataFormProperty name="kehamilan_id" hidden="true"></TKEntityProperty>

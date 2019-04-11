@@ -4,7 +4,8 @@ import {UserService} from "./user.service";
 import {User} from "./user";
 import {TokenUtils} from "../../utils/token.utils"
 import {RouterExtensions} from "nativescript-angular";
-require("nativescript-localstorage")
+let appSettings = require("application-settings");
+
 
 @Component({
     selector:"ns-login",
@@ -14,14 +15,14 @@ require("nativescript-localstorage")
     styleUrls: ["./login-common.css"]
 })
 export class LoginComponent implements OnInit {
+
     user: User;
-    
-    
+
     constructor(
         private page:Page, 
         private userService:UserService, 
         private router:RouterExtensions,
-        private tokutil:TokenUtils){
+    ){
             
             page.actionBarHidden = true;
             this.user = new User();
@@ -32,7 +33,8 @@ export class LoginComponent implements OnInit {
     }
 
     checkToken(){
-        this.tokutil.checkToken().subscribe(
+        this.userService.profile()
+            .subscribe(
             (response) => this.router.navigate(['/menu'],{ clearHistory: true })
         )
     }
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit {
         this.userService.login(this.user)
             .subscribe(
                 (response) =>{ 
-                    localStorage.setItem("token", response.content.token);
+                    appSettings.setString("token", response.content.token);
                     this.router.navigate(['/menu'],{ clearHistory: true })
                 },
                 (error) =>{

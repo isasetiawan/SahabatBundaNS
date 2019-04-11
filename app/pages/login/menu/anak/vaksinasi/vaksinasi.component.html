@@ -7,6 +7,8 @@
                 <StackLayout class="wrapper">
                     <Label class="title" [text]="item.title"></Label>
                     <Label class="desc" [text]=" 'Pada bulan ke ' + item.bulan"></Label>
+                    <Label class="desc" [text]=" item.hasil[0].tanggal === null ? 'Belum diberikan' : 'Telah diberikan pada '+ item.hasil[0].tanggal"></Label>
+
                 </StackLayout>
             </ng-template>
         </RadListView>

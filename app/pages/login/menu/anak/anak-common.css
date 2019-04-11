@@ -13,11 +13,7 @@
 }
 
 Image{
-    height:40%;
-    width: 40%;
-}
-
-Label{
-    text-align: center;
-    color: #333333;
+    height:50dp;
+    width: 50dp;
+    margin-right: 16dp;
 }

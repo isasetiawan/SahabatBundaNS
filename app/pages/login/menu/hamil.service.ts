@@ -2,74 +2,69 @@ import {Injectable} from "@angular/core";
 import {Http, Headers} from "@angular/http";
 import {Config} from "../../config";
 import {Observable} from "rxjs/Observable";
+import {HttpClient} from "@angular/common/http";
+import {LoadingIndicator} from "nativescript-loading-indicator";
 
 @Injectable()
 export class HamilService{
 
-    constructor(private http:Http){
-
-    }
-
-    getHeaders():Headers{
-        let saved_token = localStorage.getItem("token");
-        let headers = new Headers();
-        headers.append("Secret", Config.keyAPI);
-        headers.append("Authorization", "Bearer "+saved_token);
-        headers.append("Content-Type", "application/json");
-        return headers;
+    private loadingindicator:LoadingIndicator;
+    constructor(private http:HttpClient){
+        this.loadingindicator = new LoadingIndicator();
     }
 
     index(){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.get(
             Config.urlAPI+"/kehamilan/",
-            {headers:this.getHeaders()}
-        )   .map(res=>res.json())
-            .catch(this.handleErrors)
+        )   
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
     show(idkehamilan){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.get(
             Config.urlAPI+"/kehamilan/"+idkehamilan,
-            {headers:this.getHeaders()}
-        )   .map(res=>res.json())
-            .catch(this.handleErrors)
+        )   
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
     r_kehamilan(idkehamilan){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.get(
             Config.urlAPI+"/kehamilan/"+idkehamilan+"/riwayat",
-            {headers:this.getHeaders()}
-        )   .map(res=>res.json())
-            .catch(this.handleErrors)
+        )   
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
     r_kesehatan(idkehamilan){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.get(
             Config.urlAPI+"/kehamilan/"+idkehamilan+"/kesehatan",
-            {headers:this.getHeaders()}
-        )   .map(res=>res.json())
-            .catch(this.handleErrors)
+        )   
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
     r_melahirkan(idkehamilan){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.get(
             Config.urlAPI+"/kehamilan/"+idkehamilan+"/melahirkan",
-            {headers:this.getHeaders()}
-        )   .map(res=>res.json())
-            .catch(this.handleErrors)
+        )   
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
     r_keluhan(idkehamilan){
+        this.loadingindicator.show(Config.progress_dialog_options);
         return this.http.get(
             Config.urlAPI+"/kehamilan/"+idkehamilan+"/keluhan",
-            {headers:this.getHeaders()}
-        )   .map(res=>res.json())
-            .catch(this.handleErrors)
-    }
-
-    handleErrors(error:Response){
-        console.log("Anak Service ",JSON.stringify(error.json()));
-        return Observable.throw(error)
+        )   
+            .catch(err=>Observable.throw(err))
+            .finally(()=>this.loadingindicator.hide());
     }
 
 }

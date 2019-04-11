@@ -4,9 +4,9 @@ import {ActivatedRoute} from "@angular/router";
 import * as Toast from "nativescript-toast";
 import {ObservableArray} from "tns-core-modules/data/observable-array";
 import {RouterExtensions} from "nativescript-angular";
-import {ListViewEventData} from "nativescript-telerik-ui-pro/listview";
 import * as dialogs from "ui/dialogs";
 import "rxjs/add/operator/do";
+import {ListViewEventData} from "nativescript-pro-ui/listview";
 
 @Component({
     selector:"ns-periksa-kembang",
@@ -67,10 +67,6 @@ export class PeriksaComponent implements OnInit{
                 this.imgurl = res.content.img_url;
                 this.changeDetector.detectChanges();
                 this.showGuide();
-            },
-            err=> {
-                Toast.makeText(err.json().message).show();
-                this.routerExt.backToPreviousPage();
             }
         )
     }

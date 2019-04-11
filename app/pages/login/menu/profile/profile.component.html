@@ -7,6 +7,9 @@
                 <TKPropertyGroup tkDataFormGroups collapsible="true" name="Data Akun" hidden="false">
 
                     <TKEntityProperty tkPropertyGroupProperties  name="disclaimer" hidden="true"></TKEntityProperty>
+                    <TKEntityProperty tkPropertyGroupProperties  name="ibu_domisili" hidden="true"></TKEntityProperty>
+                    <TKEntityProperty tkPropertyGroupProperties  name="is_domisili_valid" hidden="true"></TKEntityProperty>
+
                     <TKEntityProperty tkPropertyGroupProperties  name="log" hidden="true"></TKEntityProperty>
 
 
@@ -104,24 +107,29 @@
 
                 </TKPropertyGroup>
 
-                <TKPropertyGroup tkDataFormGroups collapsible="true" name="Data Lokasi" hidden="false">
+                <!--<TKPropertyGroup tkDataFormGroups collapsible="true" name="Data Lokasi" hidden="false">-->
 
-                    <TKEntityProperty tkPropertyGroupProperties  name="provinsi_id" displayName="Provinsi" index="12">
-                        <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
-                        <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>
-                    </TKEntityProperty>
+                    <!--<TKEntityProperty tkPropertyGroupProperties  name="provinsi_id" displayName="Provinsi" index="12">-->
+                        <!--<TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>-->
+                        <!--<TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>-->
+                    <!--</TKEntityProperty>-->
 
-                    <TKEntityProperty tkPropertyGroupProperties  name="kabupaten_id" displayName="Kabupaten" index="13">
-                        <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
-                        <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>
-                    </TKEntityProperty>
+                    <!--<TKEntityProperty tkPropertyGroupProperties  name="kabupaten_id" displayName="Kabupaten" index="13">-->
+                        <!--<TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>-->
+                        <!--<TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>-->
+                    <!--</TKEntityProperty>-->
 
-                    <TKEntityProperty tkPropertyGroupProperties  name="kecamatan_id" displayName="Kecamatan" index="14">
-                        <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
-                        <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>
-                    </TKEntityProperty>
+                    <!--<TKEntityProperty tkPropertyGroupProperties  name="kecamatan_id" displayName="Kecamatan" index="14">-->
+                        <!--<TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>-->
+                        <!--<TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>-->
+                    <!--</TKEntityProperty>-->
 
-                </TKPropertyGroup>
+                    <!--<TKEntityProperty tkPropertyGroupProperties  name="kelurahan_id" displayName="Kelurahan" index="15">-->
+                        <!--<TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>-->
+                        <!--<TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>-->
+                    <!--</TKEntityProperty>-->
+
+                <!--</TKPropertyGroup>-->
 
             </RadDataForm>
             <Button (tap)="update()" class="btn-def" text="Perbarui"></Button>

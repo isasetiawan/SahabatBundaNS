@@ -7,8 +7,6 @@
     <ScrollView>
         <StackLayout>
 
-            <Label horizontalAlignment="center" text="Formulir Registrasi Applikasi Sahabat Bunda"></Label>
-
             <RadDataForm  tkExampleTitle tkToggleNavButton [source]="user">
 
                 <TKPropertyGroup tkDataFormGroups collapsible="true" name="Data Akun" hidden="false">
@@ -16,35 +14,22 @@
                     <TKEntityProperty tkPropertyGroupProperties  name="username" displayName="Nama Pengguna " index="0">
                         <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
                         <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>
-                        <TKMinimumLengthValidator tkEntityPropertyValidators
-                                                  errorMessage="harus lebih dari 6 karakter"
-                                                  length="6"></TKMinimumLengthValidator>
-                        <TKMaximumLengthValidator tkEntityPropertyValidators
-                                                  errorMessage="harus kurang dari 20 karakter "
-                                                  length="21"></TKMaximumLengthValidator>
-
-                    </TKEntityProperty>
-
-                    <TKEntityProperty tkPropertyGroupProperties  name="email" displayName="Email" index="1">
-                        <TKPropertyEditor tkEntityPropertyEditor type="Email"></TKPropertyEditor>
-                        <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>
-                        <TKEmailValidator tkEntityPropertyValidators></TKEmailValidator>
                     </TKEntityProperty>
 
                     <TKEntityProperty tkPropertyGroupProperties  name="password" displayName="Kata Sandi" index="2">
                         <TKPropertyEditor tkEntityPropertyEditor type="Password"></TKPropertyEditor>
                         <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>
-                        <TKMinimumLengthValidator tkEntityPropertyValidators
-                                                  errorMessage="Kata sandi harus lebih dari 8 karakter"
-                                                  length="9"></TKMinimumLengthValidator>
+                        <!--<TKMinimumLengthValidator tkEntityPropertyValidators-->
+                                                  <!--errorMessage="Kata sandi harus lebih dari 8 karakter"-->
+                                                  <!--length="9"></TKMinimumLengthValidator>-->
                     </TKEntityProperty>
 
                     <TKEntityProperty tkPropertyGroupProperties  name="password_confirmation" displayName="Konfirmasi Kata Sandi" index="3">
                         <TKPropertyEditor tkEntityPropertyEditor type="Password"></TKPropertyEditor>
                         <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>
-                        <TKMinimumLengthValidator tkEntityPropertyValidators
-                                                  errorMessage="Kata sandi harus lebih dari 8 karakter"
-                                                  length="9"></TKMinimumLengthValidator>
+                        <!--<TKMinimumLengthValidator tkEntityPropertyValidators-->
+                                                  <!--errorMessage="Kata sandi harus lebih dari 8 karakter"-->
+                                                  <!--length="9"></TKMinimumLengthValidator>-->
                     </TKEntityProperty>
 
                 </TKPropertyGroup>
@@ -54,12 +39,6 @@
                     <TKEntityProperty tkPropertyGroupProperties  name="ibu_nama" displayName="Nama Ibu" index="4">
                         <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
                         <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>
-                        <TKMinimumLengthValidator tkEntityPropertyValidators
-                                                  errorMessage="harus lebih dari 4 karakter"
-                                                  length="4"></TKMinimumLengthValidator>
-                        <TKMaximumLengthValidator tkEntityPropertyValidators
-                                                  errorMessage="harus kurang dari 30 karakter "
-                                                  length="31"></TKMaximumLengthValidator>
                     </TKEntityProperty>
 
                     <TKEntityProperty tkPropertyGroupProperties  name="ibu_birthdate" displayName="Tanggal Lahir Ibu" index="5">
@@ -71,9 +50,9 @@
                     <TKEntityProperty tkPropertyGroupProperties  name="ibu_alamat" displayName="Alamat Ibu" index="6">
                         <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
                         <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>
-                        <TKMinimumLengthValidator tkEntityPropertyValidators
-                                                  errorMessage="harus lebih dari 6 karakter"
-                                                  length="7"></TKMinimumLengthValidator>
+                        <!--<TKMinimumLengthValidator tkEntityPropertyValidators-->
+                                                  <!--errorMessage="harus lebih dari 6 karakter"-->
+                                                  <!--length="7"></TKMinimumLengthValidator>-->
                     </TKEntityProperty>
 
                     <TKEntityProperty tkPropertyGroupProperties  name="ibu_agama" displayName="Agama Ibu" index="7">
@@ -89,12 +68,7 @@
                     <TKEntityProperty tkPropertyGroupProperties  name="ayah_nama" displayName="Nama Ayah" index="8">
                         <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
                         <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>
-                        <TKMinimumLengthValidator tkEntityPropertyValidators
-                                                  errorMessage="harus lebih dari 4 karakter"
-                                                  length="4"></TKMinimumLengthValidator>
-                        <TKMaximumLengthValidator tkEntityPropertyValidators
-                                                  errorMessage="harus kurang dari 20 karakter "
-                                                  length="31"></TKMaximumLengthValidator>
+
                     </TKEntityProperty>
 
                     <TKEntityProperty tkPropertyGroupProperties  name="ayah_birthdate" displayName="Tanggal Lahir Ayah" index="9">
@@ -106,9 +80,9 @@
                     <TKEntityProperty tkPropertyGroupProperties  name="ayah_alamat" displayName="Alamat Ayah" index="10">
                         <TKPropertyEditor tkEntityPropertyEditor type="Text"></TKPropertyEditor>
                         <TKNonEmptyValidator tkEntityPropertyValidators errorMessage="Tidak Boleh Kosong"></TKNonEmptyValidator>
-                        <TKMinimumLengthValidator tkEntityPropertyValidators
-                                                  errorMessage="harus lebih dari 6 karakter"
-                                                  length="6"></TKMinimumLengthValidator>
+                        <!--<TKMinimumLengthValidator tkEntityPropertyValidators-->
+                                                  <!--errorMessage="harus lebih dari 6 karakter"-->
+                                                  <!--length="7"></TKMinimumLengthValidator>-->
                     </TKEntityProperty>
 
                     <TKEntityProperty tkPropertyGroupProperties  name="ayah_agama" displayName="Agama Ayah" index="11">
@@ -126,6 +100,18 @@
                 </TKPropertyGroup>
 
             </RadDataForm>
+
+            <Label marginLeft="16dp" marginRight="16dp" text="Provinsi"></Label>
+            <TextField marginLeft="10dp" marginRight="10dp" (tap)="askprovince()" [(ngModel)]="selprov" ></TextField>
+
+            <Label marginLeft="16dp" marginRight="16dp" text="Kabupaten/Kota"></Label>
+            <TextField marginLeft="10dp" marginRight="10dp" (tap)="askkabupaten()" [(ngModel)]="selkab" ></TextField>
+
+            <Label marginLeft="16dp" marginRight="16dp" text="Kecamatan"></Label>
+            <TextField marginLeft="10dp" marginRight="10dp" (tap)="askkecamatan()" [(ngModel)]="selkec" ></TextField>
+
+            <Label marginLeft="16dp" marginRight="16dp" text="Kelurahan"></Label>
+            <TextField marginLeft="10dp" marginRight="10dp" (tap)="askkelurahan()" [(ngModel)]="selkelu" ></TextField>
 
             <Button class="btn-def" (tap)="submit()" text="Daftar"></Button>
         </StackLayout>
